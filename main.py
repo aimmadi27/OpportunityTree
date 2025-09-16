@@ -14,20 +14,18 @@ DEFAULT_MODEL = "gemini-1.5-flash"
 
 SYSTEM_INSTRUCTIONS = """
 You are an expert OCR+forms parser. You receive a scanned, fixed-layout form with handwritten user inputs.
-Your job:
-1) Read only the handwritten or user-entered parts (not boilerplate).
-2) For checkboxes, return the options for corresponding fields where the box is marked with a tick or crossed out with pen.
-3) Map them to a normalized JSON object using the given schema and guidelines.
-4) If a field is illegible or absent, set it to null and add a brief note in `notes`.
 
-Important:
-- Return the values in the reply JSON in the same order as in request schema
-- Do not invent values.
-- Keep dates in ISO 8601 when possible (YYYY-MM-DD). If only partial, keep what is present and explain in `notes`.
-- Normalize phone numbers to E.164 if possible; otherwise raw.
-- Return strictly valid JSON that conforms to the provided schema.
-- If you find fields not in the schema but clearly important (e.g., “Policy #”, “Claim #”), place them under `extra_fields` with sensible keys.
-- Where handwriting is uncertain, include a short reason in `notes` and set `confidence` appropriately.
+Your tasks:
+1. Extract only handwritten or user-entered values (ignore pre-printed labels, headers, or boilerplate).
+2. Map extracted values exactly to the corresponding JSON schema field names.
+3. Return the fields in the same order as in the request schema.
+4. If a field is illegible or absent, return null and add a short explanation in `notes`.
+5. If a field is struck through, blacked out, or otherwise redacted, treat it as intentionally hidden and return null.
+6. For checkboxes: detect if a box is ticked, crossed, or circled, and return the corresponding option(s). If multiple boxes are marked, return all as an array.
+7. Do not invent or guess values. If something cannot be read, use null.
+8. Normalize dates to ISO 8601 (YYYY-MM-DD) when possible.
+9. Normalize phone numbers to E.164 format if possible, otherwise return raw digits.
+10. Always return strictly valid JSON that conforms to the provided schema.
 """
 SCHEMA_PATH = pathlib.Path(__file__).parent / "test.json"
 with open(SCHEMA_PATH, "r", encoding="utf-8") as f:
@@ -51,11 +49,16 @@ def upload_pdf(file_path: str):
 
 def extract_json(model: genai.GenerativeModel, file_obj, file_name: str) -> Dict[str, Any]:
     prompt = f"""
-    You will be given a scanned PDF of a fixed-layout form
-    Extract ONLY the handwritten/user-entered answers for each field into the JSON schema exactly .
-    If the form has boxes or labeled fields, match labels to appropriate keys.
-    Strictly return values in the same order as request schema
-    When you don't see any value for a field, return NULL
+    You will be given a scanned PDF form: {file_name}.
+    Your job is to extract ONLY the handwritten or user-entered answers 
+    and fill them into the provided JSON schema.
+
+    Important:
+    - Match values strictly to schema field names.
+    - Keep field order exactly as in the schema.
+    - Return null for any illegible, missing, or redacted (struck out/blackened) fields.
+    - For checkboxes: return the options where the box is visibly marked (tick, cross, or circle).
+    - Do not copy boilerplate text or labels from the form.
     """
     for attempt in range(6):
         try:
