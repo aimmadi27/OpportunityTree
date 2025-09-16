@@ -1,0 +1,322 @@
+{
+  "type": "object",
+  "properties": {
+    "PersonalInformation": {
+      "type": "object",
+      "properties": {
+        "Name": { "type": "string" },
+        "MainContact": { "type": "string" },
+        "Relationship": { "type": "string" },
+        "DateOfBirth": { "type": "string" },
+        "PrimaryPhone": { "type": "string" },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "Street": { "type": "string" },
+            "City": { "type": "string" },
+            "State": { "type": "string" },
+            "ZipCode": { "type": "string" }
+          }
+        },
+        "Email": { "type": "string" },
+        "PrimaryDiagnoses": { "type": "string" },
+        "SecondaryDiagnoses": { "type": "string" },
+        "School": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" }
+          }
+        },
+        "ReferralSource": { "type": "string" }
+      }
+    },
+    "ProgramsAndServices": {
+      "type": "object",
+      "properties": {
+        "CampusOrCommunitySetting": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "FundingSource": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ProgramsOrServicesOfInterest": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "DDDServiceContact": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Phone": { "type": "string" },
+            "Email": { "type": "string" }
+          }
+        },
+        "Transportation": {
+          "type": "object",
+          "properties": {
+            "AMRequired": { "type": "boolean" },
+            "AMPhone": { "type": "string" },
+            "PMRequired": { "type": "boolean" },
+            "PMPhone": { "type": "string" }
+          }
+        }
+      }
+    },
+    "OfficeUseOnly": {
+      "type": "object",
+      "properties": {
+        "LocationOrSite": { "type": "string" },
+        "StartDate": { "type": "string" },
+        "ServiceCodes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "EmergencyContacts": {
+      "type": "object",
+      "properties": {
+        "Primary": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Relationship": { "type": "string" },
+            "HomePhone": { "type": "string" },
+            "WorkOrCellPhone": { "type": "string" }
+          }
+        },
+        "Secondary": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Relationship": { "type": "string" },
+            "HomePhone": { "type": "string" },
+            "WorkOrCellPhone": { "type": "string" }
+          }
+        },
+        "ResidentialManager": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "ResidencePhone": { "type": "string" },
+            "ManagerWorkOrCellPhone": { "type": "string" }
+          }
+        }
+      }
+    },
+    "GuardianInformation": {
+      "type": "object",
+      "properties": {
+        "GuardianType": { "type": "string" },
+        "Details": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Relationship": { "type": "string" },
+            "Address": {
+              "type": "object",
+              "properties": {
+                "Street": { "type": "string" },
+                "City": { "type": "string" },
+                "State": { "type": "string" },
+                "ZipCode": { "type": "string" }
+              }
+            },
+            "Email": { "type": "string" },
+            "PrimaryPhone": { "type": "string" }
+          }
+        }
+      }
+    },
+    "FamilyInformation": {
+      "type": "object",
+      "properties": {
+        "SameAsGuardian": { "type": "boolean" },
+        "CoGuardianOrDifferentAddress": { "type": "boolean" },
+        "Details": {
+          "type": "object",
+          "properties": {
+            "Name": { "type": "string" },
+            "Relationship": { "type": "string" },
+            "Address": {
+              "type": "object",
+              "properties": {
+                "Street": { "type": "string" },
+                "City": { "type": "string" },
+                "State": { "type": "string" },
+                "ZipCode": { "type": "string" }
+              }
+            },
+            "Email": { "type": "string" },
+            "PrimaryPhone": { "type": "string" }
+          }
+        }
+      }
+    },
+    "HealthAndMedical": {
+      "type": "object",
+      "properties": {
+        "AdditionalDiagnosisOrNeeds": { "type": "string" },
+        "Insurance": {
+          "type": "object",
+          "properties": {
+            "Company": { "type": "string" },
+            "PolicyNumber": { "type": "string" }
+          }
+        },
+        "Vitals": {
+          "type": "object",
+          "properties": {
+            "Height": { "type": "string" },
+            "Weight": { "type": "string" }
+          }
+        },
+        "Seizures": {
+          "type": "object",
+          "properties": {
+            "HasSeizures": { "type": "boolean" },
+            "AdditionalInfoAttached": { "type": "boolean" }
+          }
+        },
+        "ChronicConditions": { "type": "string" },
+        "SpecialHealthInstructions": { "type": "string" }
+      }
+    },
+    "Mobility": {
+      "type": "object",
+      "properties": {
+        "WalksWithAssistance": { "type": "string" },
+        "Description": { "type": "string" }
+      }
+    },
+    "DietAndNutrition": {
+      "type": "object",
+      "properties": {
+        "SpecialRequirements": { "type": "string" },
+        "Allergies": { "type": "string" }
+      }
+    },
+    "PersonalCareAndMotorCoordination": {
+      "type": "object",
+      "properties": {
+        "FineMotorImpairments": { "type": "string" },
+        "EatingAndDrinkingPractices": { "type": "string" },
+        "ToiletingAndMenstrualCare": { "type": "string" },
+        "AdditionalDescription": { "type": "string" }
+      }
+    },
+    "PrescriptionMedications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Medication": { "type": "string" },
+          "TimeAdministered": { "type": "string" },
+          "Dosage": { "type": "string" }
+        }
+      }
+    },
+    "Demographics": {
+      "type": "object",
+      "properties": {
+        "MemberIdentificationCode": { "type": "string" },
+        "Address": {
+          "type": "object",
+          "properties": {
+            "Street": { "type": "string" },
+            "City": { "type": "string" },
+            "State": { "type": "string" },
+            "ZipCode": { "type": "string" }
+          }
+        },
+        "Race": { "type": "string" },
+        "Ethnicity": { "type": "string" },
+        "Disability": {
+          "type": "object",
+          "properties": {
+            "PrimaryDiagnosis": { "type": "string" },
+            "SecondaryDiagnosis": { "type": "string" },
+            "Categories": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "Resources": {
+      "type": "object",
+      "properties": {
+        "BenefitsReceived": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Household": {
+      "type": "object",
+      "properties": {
+        "ResidentialSettingType": { "type": "string" },
+        "TotalIndividualsInHousehold": { "type": "integer" },
+        "ParticipantIncluded": { "type": "boolean" }
+      }
+    },
+    "ProgramDetails": {
+      "type": "object",
+      "properties": {
+        "ProgramStartDate": { "type": "string" },
+        "DateOfBirth": { "type": "string" },
+        "PhoneNumber": { "type": "string" }
+      }
+    },
+    "CommunicationAndSocialLife": {
+      "type": "object",
+      "properties": {
+        "ClearlyCommunicatesWantsNeeds": { "type": "boolean" },
+        "PreferredCommunicationMethod": { "type": "string" },
+        "SpeechDescription": { "type": "string" },
+        "PreferredWayToUnderstandOthers": { "type": "string" },
+        "SpecialCommunicationConsiderations": { "type": "string" },
+        "Therapies": {
+          "type": "object",
+          "properties": {
+            "CurrentlyReceivingTherapies": { "type": "boolean" },
+            "DescriptionAndGoals": { "type": "string" }
+          }
+        }
+      }
+    },
+    "SeizureInformation": {
+      "type": "object",
+      "properties": {
+        "HistoryOfSeizures": { "type": "boolean" },
+        "SeizureActivityPast5Years": { "type": "boolean" },
+        "LastSeizureDate": { "type": "string" },
+        "ControlledWithMedication": { "type": "boolean" },
+        "Frequency": { "type": "string" },
+        "InterventionThresholdDuration": { "type": "string" },
+        "Antecedents": { "type": "string" },
+        "PostSeizureBehaviorChange": { "type": "string" },
+        "TypicalSeizurePresentation": { "type": "string" },
+        "EmergencyMedicalInterventions": { "type": "string" },
+        "AdditionalSafetyInformation": { "type": "string" }
+      }
+    },
+    "BehaviorAndPersonality": {
+      "type": "object",
+      "properties": {
+        "AgeAppropriateSocialSkills": { "type": "boolean" },
+        "NonAgeAppropriateBehaviorDescription": { "type": "string" },
+        "BehaviorConcerns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "BehaviorDescription": { "type": "string" },
+        "Frequency": { "type": "string" },
+        "BehaviorContextDetails": { "type": "string" }
+      }
+    }
+  }
+}
