@@ -139,10 +139,6 @@ def main():
     print(f"Extracted JSON written to {args.out}")
 
 def extract_json_from_pdf(pdf_path: str, model_name: str = DEFAULT_MODEL) -> dict:
-    """
-    Public function to extract handwritten JSON data from a PDF.
-    Can be used both by CLI (main) and Streamlit (app.py).
-    """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise RuntimeError("ERROR: GEMINI_API_KEY missing in .env")

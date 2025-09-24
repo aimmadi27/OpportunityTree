@@ -1,3 +1,9 @@
 streamlit
 google-generativeai
 python-dotenv
+openai
+pdfplumber
+tesseract
+pdf2image
+requests
+pillow
