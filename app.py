@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import pathlib
-from main import extract_json_from_pdf
+from Gemini.main import extract_json_from_pdf
 
 st.set_page_config(page_title="Handwritten Form Extractor", page_icon="📝", layout="wide")
 
@@ -23,11 +23,12 @@ if uploaded_file:
         st.error(f"Gemini extraction failed: {e}")
         st.stop()
 
+    #Radio button to choose between 2 different views
     view_mode = st.radio(
         "Choose how to view the extracted data:",
         ["JSON Output", "Form UI View"]
     )
-
+    #JSON View
     if view_mode == "JSON Output":
         st.subheader("Extracted JSON")
         st.json(data)
@@ -39,6 +40,7 @@ if uploaded_file:
             data=json.dumps(data, indent=2, ensure_ascii=False)
         )
 
+    #UI Form View
     elif view_mode == "Form UI View":
         st.subheader("Form View (Read-only)")
         st.caption("Extracted values displayed in a form-like layout")
