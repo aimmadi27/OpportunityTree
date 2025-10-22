@@ -1,9 +1,15 @@
 import os
 import json
+import streamlit as st
 from dotenv import load_dotenv
 from json_repair import repair_json
 import google.generativeai as genai
 
+
+def get_env_var(name: str):
+    if name in st.secrets:
+        return st.secrets[name]
+    return os.getenv(name)
 
 class LLMHandler:
     def __init__(self):
@@ -19,9 +25,9 @@ class LLMHandler:
 
         load_dotenv()
 
-        self.model_name = os.getenv("LLM_MODEL_NAME")
-        api_key_env = os.getenv("LLM_API_KEY_ENV")
-        self.api_key = os.getenv(api_key_env) if api_key_env else None
+        self.model_name = os.get_env_var("LLM_MODEL_NAME")
+        api_key_env = os.get_env_var("LLM_API_KEY_ENV")
+        self.api_key = os.get_env_var(api_key_env) if api_key_env else None
 
         if not self.model_name or not self.api_key:
             raise RuntimeError(
