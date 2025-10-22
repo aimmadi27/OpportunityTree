@@ -26,7 +26,7 @@ class LLMHandler:
         load_dotenv()
 
         self.model_name = get_env_var("LLM_MODEL_NAME")
-        self.api_key_env = get_env_var("LLM_API_KEY_ENV")
+        self.api_key = get_env_var("LLM_API_KEY_ENV")
 
         if not self.model_name or not self.api_key:
             raise RuntimeError(
